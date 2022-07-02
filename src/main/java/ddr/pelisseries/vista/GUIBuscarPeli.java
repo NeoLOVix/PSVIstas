@@ -21,6 +21,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Usuario
@@ -172,7 +173,7 @@ public class GUIBuscarPeli extends javax.swing.JFrame {
 
         if (peliBuscada.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se ha introducido ningún dato", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        } else {                               
             TmdbSearch busqueda = new TmdbApi("f57ae39e733b57b4ffc7da40546e6f24").getSearch(); //cargamos api KEY personal
             MovieResultsPage peli = busqueda.searchMovie(peliBuscada, null, "es", false, null); //buscamos peli
 
