@@ -8,7 +8,9 @@ package ddr.pelisseries.vista;
 import ddr.pelisseries.controlador.Controlador;
 import ddr.pelisseries.modelo.series;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -35,6 +37,9 @@ public class GUISeriesVistas extends javax.swing.JFrame {
         
         model.setDataVector(datos, cols);     
 
+        // Autoajuste de columnas
+        setJTableColumnsWidth(jTableSeriesVistas, 538, 10, 50, 10, 10, 20);        
+
     }
 
     /**
@@ -48,9 +53,10 @@ public class GUISeriesVistas extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButtonCerrarSeriesVistas = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableSeriesVistas = new javax.swing.JTable();
         jButtonBorrarSerie = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableSeriesVistas = new javax.swing.JTable();
+        poster = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,21 +72,6 @@ public class GUISeriesVistas extends javax.swing.JFrame {
             }
         });
 
-        jTableSeriesVistas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jTableSeriesVistas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableSeriesVistasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTableSeriesVistas);
-
         jButtonBorrarSerie.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jButtonBorrarSerie.setText("Borrar");
         jButtonBorrarSerie.setEnabled(false);
@@ -90,6 +81,21 @@ public class GUISeriesVistas extends javax.swing.JFrame {
             }
         });
 
+        jTableSeriesVistas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableSeriesVistas);
+
+        poster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,34 +103,36 @@ public class GUISeriesVistas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(240, 240, 240)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
                         .addComponent(jButtonBorrarSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
+                        .addGap(65, 65, 65)
                         .addComponent(jButtonCerrarSeriesVistas, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel1)))
-                .addGap(192, 224, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(54, Short.MAX_VALUE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(278, 278, 278)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCerrarSeriesVistas)
-                    .addComponent(jButtonBorrarSerie))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(40, Short.MAX_VALUE)))
+                    .addComponent(jButtonBorrarSerie)
+                    .addComponent(jButtonCerrarSeriesVistas))
+                .addContainerGap())
         );
 
         pack();
@@ -154,11 +162,22 @@ public class GUISeriesVistas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonBorrarSerieActionPerformed
 
-    private void jTableSeriesVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSeriesVistasMouseClicked
-        // al pulsar serie, se activa el boton BORRAR
-        jButtonBorrarSerie.setEnabled(true);
-    }//GEN-LAST:event_jTableSeriesVistasMouseClicked
+    
+    /*
+    * Autoajuste de columnas. Se pasa la tabla, el ANCHO MAXIMO en pixeles y los porcentajes de cada columna
+    */
+    public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth, double... percentages) {
+        double total = 0;
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            total += percentages[i];
+        }
 
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            TableColumn column = table.getColumnModel().getColumn(i);
+            column.setPreferredWidth((int) (tablePreferredWidth * (percentages[i] / total)));
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -199,7 +218,8 @@ public class GUISeriesVistas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorrarSerie;
     private javax.swing.JButton jButtonCerrarSeriesVistas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableSeriesVistas;
+    private javax.swing.JLabel poster;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,13 +6,10 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
-import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
