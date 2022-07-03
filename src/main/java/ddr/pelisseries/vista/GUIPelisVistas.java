@@ -6,8 +6,13 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
+import java.awt.Component;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -29,9 +34,11 @@ public class GUIPelisVistas extends javax.swing.JFrame {
         //Cargamos la primera Columna de encabezado.
         String cols[] = Controlador.getColumnasPelisVistas();
 
-        DefaultTableModel model = (DefaultTableModel) jTablePelisVistas.getModel();
-
+        DefaultTableModel model = (DefaultTableModel) jTablePelisVistas.getModel(); //definimos tabla
         model.setDataVector(datos, cols);
+
+        // Autoajuste de columnas
+        setJTableColumnsWidth(jTablePelisVistas, 538, 10, 70, 20);
 
     }
 
@@ -46,9 +53,10 @@ public class GUIPelisVistas extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButtonCerrar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePelisVistas = new javax.swing.JTable();
         jButtonBorrarPeli = new javax.swing.JButton();
+        poster = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablePelisVistas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,21 +72,6 @@ public class GUIPelisVistas extends javax.swing.JFrame {
             }
         });
 
-        jTablePelisVistas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jTablePelisVistas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablePelisVistasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTablePelisVistas);
-
         jButtonBorrarPeli.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jButtonBorrarPeli.setText("Borrar");
         jButtonBorrarPeli.setEnabled(false);
@@ -88,41 +81,62 @@ public class GUIPelisVistas extends javax.swing.JFrame {
             }
         });
 
+        poster.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTablePelisVistas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTablePelisVistas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTablePelisVistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jScrollPane2.setViewportView(jTablePelisVistas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jButtonBorrarPeli)
-                        .addGap(143, 143, 143)
-                        .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(53, 53, 53)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(54, Short.MAX_VALUE)))
+                    .addGap(77, 77, 77)
+                    .addComponent(jButtonBorrarPeli)
+                    .addGap(123, 123, 123)
+                    .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                    .addGap(30, 30, 30)
+                    .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(21, 21, 21)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(302, 302, 302)
+                .addComponent(jLabel1)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(278, 278, 278)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar)
                     .addComponent(jButtonBorrarPeli))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(40, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -135,11 +149,6 @@ public class GUIPelisVistas extends javax.swing.JFrame {
         dispose();
 
     }//GEN-LAST:event_jButtonCerrarActionPerformed
-
-    private void jTablePelisVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePelisVistasMouseClicked
-        // al seleccionar peli, activar botón borrar
-        jButtonBorrarPeli.setEnabled(true);
-    }//GEN-LAST:event_jTablePelisVistasMouseClicked
 
     private void jButtonBorrarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarPeliActionPerformed
         // Boton borrar pelicula. Al pulsarlo debe saltar mensaje de AVISO y si se acepta, se borrará la pelicula.
@@ -155,6 +164,21 @@ public class GUIPelisVistas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se ha borrado ninguna peícula.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonBorrarPeliActionPerformed
+
+    /*
+    * Autoajuste de columnas. Se pasa la tabla, el ANCHO MAXIMO en pixeles y los porcentajes de cada columna
+    */
+    public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth, double... percentages) {
+        double total = 0;
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            total += percentages[i];
+        }
+
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            TableColumn column = table.getColumnModel().getColumn(i);
+            column.setPreferredWidth((int) (tablePreferredWidth * (percentages[i] / total)));
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -194,7 +218,8 @@ public class GUIPelisVistas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorrarPeli;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablePelisVistas;
+    private javax.swing.JLabel poster;
     // End of variables declaration//GEN-END:variables
 }

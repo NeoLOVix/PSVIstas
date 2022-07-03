@@ -270,7 +270,7 @@ public class GUIBuscarPeli extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCerrarSeriesVistas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<peliculasEncontradas> jListBuscarPelisEcontradas;
+    private javax.swing.JList<ddr.pelisseries.modelo.peliculasEncontradas> jListBuscarPelisEcontradas;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextBuscarPeli;
     private javax.swing.JLabel poster;
