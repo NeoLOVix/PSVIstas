@@ -93,6 +93,11 @@ public class GUIPelisVistas extends javax.swing.JFrame {
         ));
         jTablePelisVistas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         jTablePelisVistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTablePelisVistas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePelisVistasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTablePelisVistas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,14 +113,14 @@ public class GUIPelisVistas extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGap(30, 30, 30)
                     .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(21, 21, 21)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(302, 302, 302)
+                .addGap(305, 305, 305)
                 .addComponent(jLabel1)
-                .addGap(19, 19, 19))
+                .addGap(305, 305, 305))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,6 +166,11 @@ public class GUIPelisVistas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se ha borrado ninguna peícula.", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonBorrarPeliActionPerformed
+
+    private void jTablePelisVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePelisVistasMouseClicked
+        // al seleccionar peli, se activa botón borrar ..mostrar cartel peli        
+        jButtonBorrarPeli.setEnabled(true);
+    }//GEN-LAST:event_jTablePelisVistasMouseClicked
 
     /*
     * Autoajuste de columnas. Se pasa la tabla, el ANCHO MAXIMO en pixeles y los porcentajes de cada columna
