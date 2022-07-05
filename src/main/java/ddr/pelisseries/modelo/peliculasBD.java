@@ -128,7 +128,7 @@ public class peliculasBD {
     }   
 
 //buscar peli por titulo
-    public static boolean getDatosPelisPorTitulo(String tituloPeli) {
+    public static boolean comprobarPelisPorTitulo(String tituloPeli) {
 
         boolean existe = false;
 
@@ -156,6 +156,37 @@ public class peliculasBD {
         }
         return existe;
     }    
+    
+    //metodo para obtener peli seleccionada en PELISVISTAS de la BBDD
+    public static String obtenerEstrenoPeli(String tituloPeli) {
+
+        String estreno = "";
+
+        try ( Connection con = new ConexionBD().conectarBD();) {
+            if (con == null) {
+                System.out.println("Error conexión");
+            } else {
+                String sql = "SELECT titulo, estreno FROM peliculas WHERE titulo= '" + tituloPeli + "'";
+
+                try ( Statement st = con.createStatement();) {
+                    ResultSet rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        if (tituloPeli.equals(rs.getString("titulo"))) {
+                            estreno = rs.getString("estreno");
+//                            System.out.println(estreno);
+                        }
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return estreno; //devolvemos la fecha de estreno.
+    }   
+    
     
     //borrar pelicula
     public static boolean peliculaBorrar(int codigo) {

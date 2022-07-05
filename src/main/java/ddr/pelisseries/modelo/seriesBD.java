@@ -256,4 +256,34 @@ public class seriesBD {
         
         return true;        
     }
+    
+        //metodo para obtener serie seleccionada en SERIEVISTAS de la BBDD
+    public static String obtenerEstrenoSerie(String tituloSerie) {
+
+        String estreno = "";
+
+        try ( Connection con = new ConexionBD().conectarBD();) {
+            if (con == null) {
+                System.out.println("Error conexión");
+            } else {
+                String sql = "SELECT titulo, estreno FROM series WHERE titulo= '" + tituloSerie + "'";
+
+                try ( Statement st = con.createStatement();) {
+                    ResultSet rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        if (tituloSerie.equals(rs.getString("titulo"))) {
+                            estreno = rs.getString("estreno");
+//                            System.out.println(estreno);
+                        }
+                    }
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return estreno; //devolvemos la fecha de estreno.
+    }   
 }

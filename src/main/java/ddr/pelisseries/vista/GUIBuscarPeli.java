@@ -80,6 +80,8 @@ public class GUIBuscarPeli extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jLabel2.setText("Título de la Peli:");
 
+        jTextBuscarPeli.setNextFocusableComponent(jButtonBuscarPeli);
+
         jButtonBuscarPeli.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jButtonBuscarPeli.setText("Buscar Peli");
         jButtonBuscarPeli.addActionListener(new java.awt.event.ActionListener() {
@@ -187,8 +189,8 @@ public class GUIBuscarPeli extends javax.swing.JFrame {
                         System.out.println("no hay");  ///si no hay poster.. habrá que poner otra imagen
                     } else {
                         peliencontrada.setUrlPoster(e.getPosterPath());
-                        System.out.println(e.getPosterPath());
-                        System.out.println(peliencontrada.getUrlPoster());
+//                        System.out.println(e.getPosterPath());
+//                        System.out.println(peliencontrada.getUrlPoster());
                     }
                     encontradas.addElement(peliencontrada);
                 }
@@ -215,7 +217,7 @@ public class GUIBuscarPeli extends javax.swing.JFrame {
         try {
             url = new URL(txt);
             Image image = ImageIO.read(url);
-            Image img = image.getScaledInstance(139, 229, 139);
+            Image img = image.getScaledInstance(139, 229, Image.SCALE_SMOOTH);
             poster.setIcon(new ImageIcon(img));
         } catch (MalformedURLException ex) {
             Logger.getLogger(GUIBuscarPeli.class.getName()).log(Level.SEVERE, null, ex);

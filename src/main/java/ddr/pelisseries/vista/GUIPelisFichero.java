@@ -133,7 +133,7 @@ public class GUIPelisFichero extends javax.swing.JFrame {
         //al picar en cualquier parte de la tabla, se selecciona la serie que está en esa fila        
         peliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 0).toString();
         fechaPeliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 1).toString();
-        if (peliculasBD.getDatosPelisPorTitulo(peliSeleccionada)) {
+        if (peliculasBD.comprobarPelisPorTitulo(peliSeleccionada)) {
             // la peli  existe.. 
             /*
             hay que mirar COMO 2 PELIS llamadas IGUAL...se pueden registrar..por fecha estreno???

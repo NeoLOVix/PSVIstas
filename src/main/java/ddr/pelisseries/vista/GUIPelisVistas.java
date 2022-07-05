@@ -6,6 +6,20 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
+import ddr.pelisseries.modelo.peliculasBD;
+import ddr.pelisseries.modelo.peliculasEncontradas;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbSearch;
+import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.core.MovieResultsPage;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -114,9 +128,9 @@ public class GUIPelisVistas extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane2)
-                    .addGap(30, 30, 30)
-                    .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(21, 21, 21)))
+                    .addGap(18, 18, 18)
+                    .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)))
             .addGroup(layout.createSequentialGroup()
                 .addGap(305, 305, 305)
                 .addComponent(jLabel1)
@@ -134,7 +148,7 @@ public class GUIPelisVistas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)))
+                        .addGap(88, 88, 88)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar)
                     .addComponent(jButtonBorrarPeli))
@@ -170,11 +184,47 @@ public class GUIPelisVistas extends javax.swing.JFrame {
     private void jTablePelisVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePelisVistasMouseClicked
         // al seleccionar peli, se activa botón borrar ..mostrar cartel peli        
         jButtonBorrarPeli.setEnabled(true);
+        String peliSeleccion = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 1).toString(); //seleccionamos la peli 
+
+        String estreno = peliculasBD.obtenerEstrenoPeli(peliSeleccion);
+
+        TmdbSearch busqueda = new TmdbApi("f57ae39e733b57b4ffc7da40546e6f24").getSearch(); //cargamos api KEY personal
+        MovieResultsPage peli = busqueda.searchMovie(peliSeleccion, null, "es", false, null); //buscamos peli
+
+        if (peli.getTotalResults() > 0) { //si hay peli
+            for (MovieDb e : peli) {
+                peliculasEncontradas peliencontrada = new peliculasEncontradas(e.getTitle(), e.getReleaseDate(), e.getId());
+                peliencontrada.setTitulo(e.getTitle());
+                peliencontrada.setIdPeli(e.getId());
+                peliencontrada.setEstreno(e.getReleaseDate());
+                
+                if (estreno.equals(peliencontrada.getEstreno())){
+                    if (e.getPosterPath() == null) {
+                        System.out.println("no hay");  ///si no hay poster.. habrá que poner otra imagen
+                    } else {
+                        peliencontrada.setUrlPoster(e.getPosterPath());
+                    }
+                    
+                    String txt = peliencontrada.getUrlPoster();
+                    URL url;
+                    try {
+                        url = new URL(txt);
+                        Image image = ImageIO.read(url);
+                        Image img = image.getScaledInstance(185, 262, Image.SCALE_SMOOTH); //213x328
+                        poster.setIcon(new ImageIcon(img));
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(GUIBuscarPeli.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GUIBuscarPeli.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_jTablePelisVistasMouseClicked
 
     /*
     * Autoajuste de columnas. Se pasa la tabla, el ANCHO MAXIMO en pixeles y los porcentajes de cada columna
-    */
+     */
     public static void setJTableColumnsWidth(JTable table, int tablePreferredWidth, double... percentages) {
         double total = 0;
         for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {

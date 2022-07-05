@@ -210,7 +210,7 @@ public class GUIBuscarSerie extends javax.swing.JFrame {
         try {
             url = new URL(txt);
             Image image = ImageIO.read(url);
-            Image img = image.getScaledInstance(139, 229, 139);
+            Image img = image.getScaledInstance(139, 229, Image.SCALE_SMOOTH);
             poster.setIcon(new ImageIcon(img));
         } catch (MalformedURLException ex) {
             Logger.getLogger(GUIBuscarSerie.class.getName()).log(Level.SEVERE, null, ex);

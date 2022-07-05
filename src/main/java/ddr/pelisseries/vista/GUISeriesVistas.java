@@ -6,7 +6,24 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
-import ddr.pelisseries.modelo.series;
+import ddr.pelisseries.modelo.peliculasBD;
+import ddr.pelisseries.modelo.peliculasEncontradas;
+import ddr.pelisseries.modelo.seriesBD;
+import ddr.pelisseries.modelo.seriesEncontradas;
+import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbSearch;
+import info.movito.themoviedbapi.TvResultsPage;
+import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.core.MovieResultsPage;
+import info.movito.themoviedbapi.model.tv.TvSeries;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -119,11 +136,11 @@ public class GUISeriesVistas extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(305, 305, 305)
                         .addComponent(jLabel1)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,6 +190,52 @@ public class GUISeriesVistas extends javax.swing.JFrame {
     private void jTableSeriesVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSeriesVistasMouseClicked
         // al seleccionar serie, se activa botón borrar ..mostrar cartel serie 
         jButtonBorrarSerie.setEnabled(true);
+        String serieSeleccion = jTableSeriesVistas.getValueAt(jTableSeriesVistas.getSelectedRow(), 1).toString(); //seleccionamos la serie 
+
+        String estreno = seriesBD.obtenerEstrenoSerie(serieSeleccion);
+
+        TmdbSearch busqueda = new TmdbApi("f57ae39e733b57b4ffc7da40546e6f24").getSearch(); //cargamos api KEY personal
+        TvResultsPage serie = busqueda.searchTv(serieSeleccion, "es", null); //buscamos serie
+
+        if (serie.getTotalResults() > 0) { //si hay peli
+            for (TvSeries e : serie) {
+                    seriesEncontradas serieencontrada = new seriesEncontradas(e.getName(), e.getFirstAirDate(), e.getId());
+                    serieencontrada.setTitulo(e.getName());
+                    serieencontrada.setIdSerie(e.getId());
+                    serieencontrada.setEstreno(e.getFirstAirDate());
+                
+                if (estreno.equals(serieencontrada.getEstreno())){
+                    if (e.getPosterPath() == null) {
+                        System.out.println("no hay");  ///si no hay poster.. habrá que poner otra imagen
+                    } else {
+                        serieencontrada.setUrlPoster(e.getPosterPath());
+                    }
+                    
+                    String txt = serieencontrada.getUrlPoster();
+                    URL url;
+                    try {
+                        url = new URL(txt);
+                        Image image = ImageIO.read(url);
+                        Image img = image.getScaledInstance(185, 262, Image.SCALE_SMOOTH); //213x328
+                        poster.setIcon(new ImageIcon(img));
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(GUIBuscarPeli.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(GUIBuscarPeli.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }  
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jTableSeriesVistasMouseClicked
 
     
