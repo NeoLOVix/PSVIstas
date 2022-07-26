@@ -4,6 +4,7 @@ C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseri
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\ConfiguradorBD.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\peliculasEncontradas.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUINuevaPeli.java
+C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUINuevaPeliFichero.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\seriesEncontradas.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\series.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\peliculas.java
@@ -14,6 +15,7 @@ C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseri
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUIActualizarSerie.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\peliculasFichero.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUIBuscarPeli.java
+C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUIPeliFicheroBuscar.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\vista\GUINuevaSerie.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\controlador\Controlador.java
 C:\Users\Dany\Documents\NetBeansProjects\pelisseries\src\main\java\ddr\pelisseries\modelo\ConexionBD.java

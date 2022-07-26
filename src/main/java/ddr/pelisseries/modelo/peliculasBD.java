@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,6 +44,10 @@ public class peliculasBD {
 
         } catch (SQLException ex) {
             Logger.getLogger(GUIPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.getMessage().contains("Duplicate entry")){ //AVISO DE PELI DUPLICADA
+                JOptionPane.showMessageDialog(null, "Operación No realizada: La película ya existe en la base de datos");
+            }
+            
             return false;
         }
         

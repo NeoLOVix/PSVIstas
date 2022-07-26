@@ -60,7 +60,7 @@
                           <Component id="tituloPeli" min="-2" pref="329" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jDatePeviVista" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="jDatePeliVista" min="-2" pref="140" max="-2" attributes="0"/>
                                   <Component id="estrenoPeli" min="-2" pref="122" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jDatePeviVista" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jDatePeliVista" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -169,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDatePeviVista">
+    <Component class="com.toedter.calendar.JDateChooser" name="jDatePeliVista">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>

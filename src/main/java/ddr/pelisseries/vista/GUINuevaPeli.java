@@ -24,7 +24,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
         tituloPeli.setText(peliSeleccionada);    
         estrenoPeli.setText(estreno);
     }
-
+    
     private GUINuevaPeli() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -47,7 +47,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
         cancelBTPeliNueva = new javax.swing.JButton();
         acceptBTPeliNueva = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jDatePeviVista = new com.toedter.calendar.JDateChooser();
+        jDatePeliVista = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jLabelEstreno = new javax.swing.JLabel();
         estrenoPeli = new javax.swing.JTextField();
@@ -125,7 +125,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
                             .addComponent(tituloPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDatePeviVista, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDatePeliVista, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(estrenoPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(59, 59, 59)
                                 .addComponent(jLabel4)))))
@@ -152,7 +152,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jDatePeviVista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDatePeliVista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelEstreno)
@@ -196,7 +196,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
            
             boolean response=false;
 
-            Date fechaalta = jDatePeviVista.getDate();
+            Date fechaalta = jDatePeliVista.getDate();
             SimpleDateFormat fPersonal = new SimpleDateFormat("yyyy/MM/dd"); //Aplicamos el formateador llamando al metodo format
             String fechapeli = fPersonal.format(fechaalta);
 
@@ -262,7 +262,7 @@ public class GUINuevaPeli extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton cancelBTPeliNueva;
     private javax.swing.JTextField estrenoPeli;
-    private com.toedter.calendar.JDateChooser jDatePeviVista;
+    private com.toedter.calendar.JDateChooser jDatePeliVista;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

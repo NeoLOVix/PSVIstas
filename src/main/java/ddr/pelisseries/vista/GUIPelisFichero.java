@@ -4,9 +4,6 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
-import ddr.pelisseries.modelo.peliculas;
-import ddr.pelisseries.modelo.peliculasBD;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -130,28 +127,13 @@ public class GUIPelisFichero extends javax.swing.JFrame {
         // o si no hace falta actualizarse porque ya lo está
         //o si hay que actualizarse
 
-        //al picar en cualquier parte de la tabla, se selecciona la serie que está en esa fila        
+        //al picar en cualquier parte de la tabla, se selecciona la peli que está en esa fila        
         peliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 0).toString();
         fechaPeliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 1).toString();
-        if (peliculasBD.comprobarPelisPorTitulo(peliSeleccionada)) {
-            // la peli  existe.. 
-            /*
-            hay que mirar COMO 2 PELIS llamadas IGUAL...se pueden registrar..por fecha estreno???
-            */
-            JOptionPane.showMessageDialog(null, "En la BBDD ya está registrada esa película, por lo que no se actualizará.", "NO HAY QUE ACTUALIZAR PELICULA", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            boolean response = false;
-            System.out.println("AÑADIR NUEVA PELI");
-            peliculas nuevaPeli = new peliculas(peliSeleccionada, fechaPeliSeleccionada);
-            response = Controlador.insertNuevaPeliCSV(nuevaPeli);
-
-            if(response)    {
-                JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
-            } else 
-                JOptionPane.showMessageDialog(null, "Operación No realizada");
-        }
-
-
+        
+        GUIPeliFicheroBuscar pfb = new GUIPeliFicheroBuscar(peliSeleccionada, fechaPeliSeleccionada);
+        pfb.setVisible(true);
+        
     }//GEN-LAST:event_jTablePelisVistasMouseClicked
 
     /**
