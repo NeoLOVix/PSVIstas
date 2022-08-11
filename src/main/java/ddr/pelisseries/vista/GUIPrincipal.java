@@ -43,10 +43,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jButtonActualizarSerie = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         PelisVistas1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         BuscarPeli = new javax.swing.JButton();
         BuscarSerie = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButtonInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -95,8 +95,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("\"Este producto utiliza la API de TMDB, pero TMDB no lo respalda ni lo certifica\".");
-
         BuscarPeli.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         BuscarPeli.setIcon(new javax.swing.ImageIcon("D:\\Proyectos\\PelisSeries\\Imágenes\\cine72x72.png")); // NOI18N
         BuscarPeli.setText("Buscar Peli");
@@ -123,6 +121,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonInfo.setText("i");
+        jButtonInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInfoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,17 +148,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
                             .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BuscarSerie, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonActualizarSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonActualizarSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,10 +174,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonActualizarSerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BuscarSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -224,7 +227,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         int seleccion = JOptionPane.showOptionDialog(null, "Cargar fichero de Series o de Películas?", "Cargar datos de fichero CSV", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcion, opcion[0]);
         if (seleccion == 0) {       //si pulsa SERIE       
             BufferedReader reader = null;
-            try { //comprobamos que exite fichero
+            try { //comprobamos que existe fichero
                 reader = new BufferedReader(new FileReader("D:\\Proyectos\\PelisSeries\\Datos Forms\\Serievista.csv")); 
                 GUISeriesFichero sf = new GUISeriesFichero();
                 sf.setVisible(true);
@@ -233,7 +236,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         } else if (seleccion == 1) { //si pulsa PELI
             BufferedReader reader = null;
-            try { //comprobamos que exite fichero
+            try { //comprobamos que existe fichero
                 reader = new BufferedReader(new FileReader("D:\\Proyectos\\PelisSeries\\Datos Forms\\Pelivista.csv")); 
                 GUIPelisFichero pf = new GUIPelisFichero();
                 pf.setVisible(true);
@@ -242,6 +245,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInfoActionPerformed
+        //muestra mensaje info
+        JOptionPane.showMessageDialog(null, "Este producto utiliza la API de TMDB, pero TMDB no lo respalda ni lo certifica.", "Info about API TMDB", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButtonInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,8 +300,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton PelisVistas1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonActualizarSerie;
+    private javax.swing.JButton jButtonInfo;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

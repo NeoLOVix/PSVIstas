@@ -149,6 +149,7 @@ public class peliculasBD {
                         if (tituloPeli.equals(rs.getString("titulo"))) {
 //                            System.out.println("LA SERIE EXISTE");
                             existe = true;
+                            rs.afterLast();
                         } 
                     }
                 } catch (SQLException e) {

@@ -4,6 +4,8 @@
 package ddr.pelisseries.vista;
 
 import ddr.pelisseries.controlador.Controlador;
+import static ddr.pelisseries.modelo.peliculasBD.comprobarPelisPorTitulo;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,14 +25,14 @@ public class GUIPelisFichero extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         Object[][] datos;
-//        
+
         //Cargamos los datos del tabla series
         datos = Controlador.getDatosPelisFichero();
         //Cargamos la primera fila de encabezado.
         String cols[] = Controlador.getColumnasPelisFichero();
-//        
+
         DefaultTableModel model = (DefaultTableModel) jTablePelisVistas.getModel();
-//        
+
         model.setDataVector(datos, cols);
     }
 
@@ -125,15 +127,25 @@ public class GUIPelisFichero extends javax.swing.JFrame {
     private void jTablePelisVistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePelisVistasMouseClicked
         // Cuando se seleccione una peli de la lista, debe comparar si ya está en la BBDD 
         // o si no hace falta actualizarse porque ya lo está
-        //o si hay que actualizarse
+        // o si hay que actualizarse
 
         //al picar en cualquier parte de la tabla, se selecciona la peli que está en esa fila        
         peliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 0).toString();
         fechaPeliSeleccionada = jTablePelisVistas.getValueAt(jTablePelisVistas.getSelectedRow(), 1).toString();
-        
-        GUIPeliFicheroBuscar pfb = new GUIPeliFicheroBuscar(peliSeleccionada, fechaPeliSeleccionada);
-        pfb.setVisible(true);
-        
+
+        if (comprobarPelisPorTitulo(peliSeleccionada)) {
+            System.out.println("existe");
+            GUIPeliFicheroBuscar pfb = new GUIPeliFicheroBuscar(peliSeleccionada, fechaPeliSeleccionada);
+            pfb.setVisible(true);
+            JOptionPane.showMessageDialog(null, "La peli ya existe en la BBDD, pero puede haber varias peliculas con el mismo título. Utiliza el siguiente buscador por favor.", "Película seleccionada ya registrada ", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            System.out.println("no existe");
+            GUIPeliFicheroBuscar pfb = new GUIPeliFicheroBuscar(peliSeleccionada, fechaPeliSeleccionada);
+            pfb.setVisible(true);
+            JOptionPane.showMessageDialog(null, "La peli no existe en la BBDD o está mal escrita por el usuario. Utiliza el siguiente buscador por favor.", "Película seleccionada no registrada ", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jTablePelisVistasMouseClicked
 
     /**
